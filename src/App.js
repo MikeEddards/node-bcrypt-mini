@@ -12,13 +12,39 @@ class App extends Component {
     };
   }
 
-  async login() {}
+  async login() {
+    const {email, password} = this.state
+    const result = await axios.post('/auth/login', {
+      email,
+      password
+    })
+    this.setState({
+      loggedInUser: result.data,
+      email: '',
+      password: ''
+    })
+  }
 
-  async signup() {}
+  async signup() {
+    const {email, password} = this.state
+    const result = await axios.post('/auth/signup', {
+      email,
+      password
+    })
+    this.setState({
+      loggedInUser: result.data,
+      email: '',
+      password: ''
+    })
+  }
 
-  logout() {}
+  logout() {
+    axios.get('/auth/logout')
+    this.setState({loggedInUser: {}})
+  }
 
   render() {
+    
     let { loggedInUser, email, password } = this.state;
     return (
       <div className="form-container done">
@@ -37,8 +63,8 @@ class App extends Component {
               value={password}
               type="password"
               onChange={e => this.setState({ password: e.target.value })}
-              placeholder="password"
-            />
+              placeholder="password" />
+            
           </div>
           {loggedInUser.email ? (
             <button onClick={() => this.logout()}>Logout</button>

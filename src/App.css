@@ -53,9 +53,13 @@ button {
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   margin-bottom: 10px;
 }
-button:not([disabled]):hover {
+button:hover {
   background: #fff;
   color: #2baae2;
+  /* animation-name: rotate;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; */
 }
 button[disabled] {
   background: #1a7186;
